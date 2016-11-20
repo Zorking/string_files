@@ -1,22 +1,15 @@
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include <cstring>
 
 using namespace std;
 
 
-int main() {
-    //create
+void create_file() {
     int is_correct;
     string answer;
-    //read
-    string all_strings;
-    string line;
-    //read
     ofstream newfile;
     cout << "File is ready: Yes or No?\n";
     is_correct = 0;
@@ -32,28 +25,35 @@ int main() {
         is_correct = 1;
     }
     newfile.close();
-    //create
+}
+
+void read_file() {
+    string all_strings;
+    string line;
     ifstream file("qwerty.txt");
     if (file.is_open()) {
         while (getline(file, line)) {
             line = line;
             all_strings.append(line);
-            std::string word;
-            std::istringstream iss(line, std::istringstream::in);
-            std::vector<std::string> wordsVector;
+            string word;
+            istringstream iss(line, ios_base::in);
+            vector<string> wordsVector;
             while (iss >> word) {
                 wordsVector.push_back(word);
-                size_t qwerty = word.find_last_of(word[0]);
                 if (word.find_last_of(word[0]) > 0) {
                     cout << word + "\n";
                 }
             }
-            std::reverse(begin(wordsVector), end(wordsVector));
+            reverse(begin(wordsVector), end(wordsVector));
         }
         cout << all_strings;
         file.close();
     } else cout << "Unable to open file";
+}
 
+int main() {
+    create_file();
+    read_file();
     return 0;
 }
 
