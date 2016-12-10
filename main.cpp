@@ -3,11 +3,11 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include <string>
+
 using namespace std;
 
 
-void create_file(string data) {
+void write_2_file(string data) {
     ofstream newfile;
     newfile.open("qwerty.txt");
     newfile << data;
@@ -33,6 +33,7 @@ void read_file() {
             reverse(begin(wordsVector), end(wordsVector));
         }
         file.close();
+        write_2_file(all_strings);
     } else cout << "Unable to open file";
 }
 
@@ -44,9 +45,11 @@ int main() {
     while (is_correct == 0) {
         cin >> answer;
         if (answer == "No") {
-            cout << "Enter some data to file\n";
-            cin >> data;
-            create_file(data);
+                cout << "Enter some data to file\n";
+            while (data == "") {
+                getline(cin, data);
+            }
+            write_2_file(data);
         } else if (answer != "Yes") {
             cout << "Yes or No?\n";
             continue;
