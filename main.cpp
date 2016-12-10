@@ -5,19 +5,18 @@
 #include <algorithm>
 
 using namespace std;
+string SOURCE_FILE_NAME = "source.txt", EDITED_FILE_NAME = "edited.txt";
 
-
-void write_2_file(string data) {
-    ofstream newfile;
-    newfile.open("qwerty.txt");
-    newfile << data;
-    newfile.close();
+void write_file(string data, string file_name) {
+    ofstream new_file;
+    new_file.open(file_name);
+    new_file << data;
+    new_file.close();
 }
 
 void read_file() {
-    string all_strings;
-    string line;
-    ifstream file("qwerty.txt");
+    string all_strings, line;
+    ifstream file("source.txt");
     if (file.is_open()) {
         while (getline(file, line)) {
             line = line;
@@ -33,7 +32,7 @@ void read_file() {
             reverse(begin(wordsVector), end(wordsVector));
         }
         file.close();
-        write_2_file(all_strings);
+        write_file(all_strings, EDITED_FILE_NAME);
     } else cout << "Unable to open file";
 }
 
@@ -49,7 +48,7 @@ int main() {
             while (data == "") {
                 getline(cin, data);
             }
-            write_2_file(data);
+            write_file(data, SOURCE_FILE_NAME);
         } else if (answer != "Yes") {
             cout << "Yes or No?\n";
             continue;
