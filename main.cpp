@@ -33,6 +33,7 @@ void read_file() {
         }
         file.close();
         write_file(all_strings, EDITED_FILE_NAME);
+        cout << "Output: " + all_strings;
     } else cout << "Unable to open file";
 }
 
@@ -44,7 +45,7 @@ int main() {
     while (is_correct == 0) {
         cin >> answer;
         if (answer == "No") {
-                cout << "Enter some data to file\n";
+            cout << "Enter some data to file\n";
             while (data == "") {
                 getline(cin, data);
             }
